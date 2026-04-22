@@ -1,11 +1,10 @@
-﻿using Soenneker.Tests.Unit;
-using Xunit;
+using Soenneker.Tests.Unit;
 
 namespace Soenneker.Documents.General.Tests;
 
 public sealed class GeneralDocumentTests : UnitTest
 {
-    [Fact]
+    [Test]
     public void Default()
     {
 
