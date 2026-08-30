@@ -5,14 +5,39 @@
 
 # Soenneker.Documents.General
 
-A document type for general storage purposes, with an EntityType property.
+Provides a semantic base type and marker interface for general-purpose typed documents.
 
-## Install
+## Installation
 
 ```bash
 dotnet add package Soenneker.Documents.General
 ```
 
-## What you get
+## Usage
 
-- `IGeneralDocument` — A document type for general storage purposes, with an EntityType property.
+```csharp
+using Soenneker.Documents.General;
+
+public sealed class SettingDocument : GeneralDocument
+{
+    public override string EntityType { get; set; } = "setting";
+
+    public string Key { get; set; } = null!;
+    public string Value { get; set; } = null!;
+}
+
+var setting = new SettingDocument
+{
+    DocumentId = "theme",
+    PartitionKey = "tenant-7",
+    CreatedAt = DateTimeOffset.UtcNow,
+    Key = "theme",
+    Value = "dark"
+};
+```
+
+`GeneralDocument` inherits the identity and timestamp fields from `Document` and the required `EntityType` discriminator from `TypedDocument`. `EntityType` serializes as `entityType` with both System.Text.Json and Newtonsoft.Json.
+
+The package adds no persistence, validation, discriminator enforcement, or serialization converter. Derived types must implement `EntityType`, initialize required values, and keep the discriminator stable if readers use it to select a concrete type.
+
+`IGeneralDocument` adds no members beyond `ITypedDocument`; use it when registration or persistence code needs to identify this general-document family separately from other typed documents.

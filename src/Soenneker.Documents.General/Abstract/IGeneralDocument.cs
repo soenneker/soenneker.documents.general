@@ -3,6 +3,6 @@
 namespace Soenneker.Documents.General.Abstract;
 
 /// <summary>
-/// A document type for general storage purposes, with an EntityType property
+/// Identifies a general-purpose typed document.
 /// </summary>
 public interface IGeneralDocument : ITypedDocument;
