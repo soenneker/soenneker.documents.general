@@ -36,7 +36,7 @@ var setting = new SettingDocument
 };
 ```
 
-`GeneralDocument` inherits the identity and timestamp fields from `Document` and the required `EntityType` discriminator from `TypedDocument`. `EntityType` serializes as `entityType` with both System.Text.Json and Newtonsoft.Json.
+`GeneralDocument` inherits the identity and timestamp fields from `Document` and the required `EntityType` discriminator from `TypedDocument`. `EntityType` serializes as `entityType` with System.Text.Json.
 
 The package adds no persistence, validation, discriminator enforcement, or serialization converter. Derived types must implement `EntityType`, initialize required values, and keep the discriminator stable if readers use it to select a concrete type.
 
